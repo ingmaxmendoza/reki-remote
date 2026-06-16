@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reki</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Reki</h1>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <section class="media-grid">
+    <button data-action="prev">⏮ Prev</button>
+    <button data-action="play-pause">⏯ Play/Pause</button>
+    <button data-action="next">⏭ Next</button>
+    <button data-action="volume-down">🔉 Vol-</button>
+    <button data-action="mute">🔇 Mute</button>
+    <button data-action="volume-up">🔊 Vol+</button>
+  </section>
+
+  <section class="type-box">
+    <input id="text-input" type="text" placeholder="Type text to send to PC" />
+    <button id="send-text">Send</button>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
