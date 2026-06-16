@@ -20,35 +20,17 @@ const { mediaAction, typeText } = require('../lib/input');
 describe('mediaAction', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  test('play-pause presses and releases AudioPlay', async () => {
-    await mediaAction('play-pause');
-    expect(keyboard.pressKey).toHaveBeenCalledWith(Key.AudioPlay);
-    expect(keyboard.releaseKey).toHaveBeenCalledWith(Key.AudioPlay);
-  });
-
-  test('next presses AudioNext', async () => {
-    await mediaAction('next');
-    expect(keyboard.pressKey).toHaveBeenCalledWith(Key.AudioNext);
-  });
-
-  test('prev presses AudioPrev', async () => {
-    await mediaAction('prev');
-    expect(keyboard.pressKey).toHaveBeenCalledWith(Key.AudioPrev);
-  });
-
-  test('volume-up presses AudioVolUp', async () => {
-    await mediaAction('volume-up');
-    expect(keyboard.pressKey).toHaveBeenCalledWith(Key.AudioVolUp);
-  });
-
-  test('volume-down presses AudioVolDown', async () => {
-    await mediaAction('volume-down');
-    expect(keyboard.pressKey).toHaveBeenCalledWith(Key.AudioVolDown);
-  });
-
-  test('mute presses AudioMute', async () => {
-    await mediaAction('mute');
-    expect(keyboard.pressKey).toHaveBeenCalledWith(Key.AudioMute);
+  test.each([
+    ['play-pause', 'AudioPlay'],
+    ['next', 'AudioNext'],
+    ['prev', 'AudioPrev'],
+    ['volume-up', 'AudioVolUp'],
+    ['volume-down', 'AudioVolDown'],
+    ['mute', 'AudioMute'],
+  ])('%s presses and releases %s', async (action, keyName) => {
+    await mediaAction(action);
+    expect(keyboard.pressKey).toHaveBeenCalledWith(Key[keyName]);
+    expect(keyboard.releaseKey).toHaveBeenCalledWith(Key[keyName]);
   });
 
   test('unknown action throws', async () => {
